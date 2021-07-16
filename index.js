@@ -1,10 +1,10 @@
 const inquirer = require('inquirer');
 const DB = require("./db")
 
-// DB.Role.getAll(function(err, result){
-//     if(err) throw err;
-//     console.table(result)
-// })
+DB.Role.getAll(function(err, result){
+    if(err) throw err;
+    console.table(result)
+})
 
 const start = () => {
     inquirer
@@ -25,13 +25,13 @@ const start = () => {
                     })
                 .then((answer) => {
                     if (answer.adding === 'DEPARTMENT') {
-                        addDepartment();
+                        addDepartment(DB.Department);
                     }
                     else if (answer.adding === 'ROLE') {
-                        addRole();
+                        addRole(DB.Role);
                     } 
                     else if (answer.adding === 'EMPLOYEE') {
-                        addEmployee();
+                        addEmployee(DB.Employee);
                     }
                 });
             } else if (answer.action === 'VIEW') {
@@ -57,3 +57,4 @@ const start = () => {
         });
 };
 
+start();
